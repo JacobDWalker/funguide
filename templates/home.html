@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funguide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="static/img/funguide_icon.ico">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Styling for the header box */
+header {
+  background-color: #f0f0f0;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: black;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+/* Container for the flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+
+/* Style for the article sections */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+/* footer styling */
+footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: left;
+  color: black;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+/* Layout configuration for flex */
+@media (max-width: 600px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+    </style>
+</head>
+
+<body>
+<header>
+    <img src="static/img/funguide_icon.png">
+</header>
+
+<header>
+    <h2>Funguide</h2>
+</header>
+ {% block body %}
+<article>
+    <h1>What is Funguide?</h1>
+    <p>Funguide utilizes a deep learning model to identify a mushroom's genus from an uploaded image.
+        The model was trained with transfer learning and a dataset containing images of 9 different genera of mushrooms.
+        <br><br>
+        Funguide is meant to identify the following mushroom genera: </p>
+    <ul>
+        <li>Agaricus</li>
+        <li>Amanita</li>
+        <li>Boletus</li>
+        <li>Cortinarius</li>
+        <li>Entoloma</li>
+        <li>Hygrocybe</li>
+        <li>Lactarius</li>
+        <li>Russula</li>
+        <li>Suillus</li>
+    </ul>
+</article>
+
+<article>
+    <b>Upload an image of a mushroom and Funguide will predict its genus</b>
+    <br><br>
+    <form action="/analysis" method="POST" enctype="multipart/form-data">
+        <input type="file" id="image" name="image">
+        <input type="submit">
+    </form>
+</article>
+<article>
+    <img src="static/img/Funguide_confusion_matrix.png" alt="Confusion matrix for Funguide based on the predicted genus vs. the true genus">
+</article>
+<footer>
+    <p>Jacob Walker C964 capstone project</p>
+    <p>Logo designed by Anna Welch</p>
+    <br>
+    <p>Sources:</p>
+    <ul>
+       <li><a href="https://www.kaggle.com/datasets/maysee/mushrooms-classification-common-genuss-images">Mushroom images data source</a></li>
+        <li><a href="https://tfhub.dev/google/imagenet/mobilenet_v3_large_100_224/classification/5">Imagenet (ILSVRC-2012-CLS) classification with MobileNet V3 large from TensorFlowHub</a> </li>
+    </ul>
+
+
+</footer>
+
+</body>
+{% endblock %}
+</html>
