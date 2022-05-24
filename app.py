@@ -7,6 +7,9 @@ from werkzeug.utils import secure_filename
 from model.NeuralNetwork import NeuralNetwork
 
 app = Flask(__name__)
+
+app.secret_key = os.urandom(12)
+
 app.config["ENV"] = "production"
 if app.config["ENV"] == "production":
     app.config.from_object("config.ProductionConfig")
