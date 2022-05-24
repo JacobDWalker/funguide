@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 from model.NeuralNetwork import NeuralNetwork
 
 app = Flask(__name__)
-app.config["ENV"] = "development"
+app.config["ENV"] = "production"
 if app.config["ENV"] == "production":
     app.config.from_object("config.ProductionConfig")
 elif app.config["ENV"] == "testing":
