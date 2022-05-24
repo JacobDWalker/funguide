@@ -1,12 +1,7 @@
-import base64
-
 import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
-# from tensorflow import keras
-# from tensorflow.keras import layers
 import matplotlib.pyplot as plt
-from io import BytesIO
 import time
 
 from model import DataProcessing
