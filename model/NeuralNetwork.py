@@ -1,3 +1,5 @@
+import random
+
 import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
@@ -21,7 +23,8 @@ class NeuralNetwork:
         prediction = self.loaded_model.predict(batch)
         graph_location = self.top_3_predictions_unlabeled(prediction)
         prediction_label = self.get_prediction_label(prediction)
-        return prediction_label, graph_location
+        pie_chart_location = self.create_pie_chart(prediction)
+        return prediction_label, graph_location, pie_chart_location
 
     def get_prediction_label(self, prediction_array):
         """
@@ -44,7 +47,7 @@ class NeuralNetwork:
                 top_3_prediction_values,
                 color="gray")
         plt.title("Top 3 highest probability genus predictions")
-        plt.ylabel("Confidence")
+        plt.ylabel("Confidence %")
         plt.xticks(np.arange(len(top_3_prediction_labels)),
                    labels=top_3_prediction_labels)
 
@@ -53,4 +56,16 @@ class NeuralNetwork:
         plt.savefig(url)
         return url
 
+    def create_pie_chart(self, prediction_array, n=0):
+        prediction_array = prediction_array * 100
+        fig, ax = plt.subplots()
+        ax.stem(self.unique_genus.tolist(), prediction_array[0])
+        plt.xticks(rotation=90)
+        plt.subplots_adjust(bottom=0.25)
+        plt.title("Prediction probability for 9 genera")
 
+        now = str(int(time.time()))
+        url = "static/img/graphs/" + now + str(random.randint(0, 100)) + ".png"
+
+        plt.savefig(url)
+        return url
