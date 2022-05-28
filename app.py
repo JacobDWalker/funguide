@@ -54,12 +54,12 @@ def analysis():
             image.save(image_to_process)
 
             print(f"Images Saved: {image_to_process}")
-            top_prediction, graph_location, pie_chart_location = loaded_model.image_to_prediction([image_to_process])
+            top_prediction, graph_location, stem_chart_location = loaded_model.image_to_prediction([image_to_process])
             print(top_prediction)
             print(f"Request.url = {request.url}")
             return render_template('analysis.html', top_prediction=top_prediction,
                                    image_to_process=image_to_process, graph_location=graph_location,
-                                   pie_chart_location=pie_chart_location)
+                                   stem_chart_location=stem_chart_location)
     return redirect("/")
 
 

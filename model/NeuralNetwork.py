@@ -23,8 +23,8 @@ class NeuralNetwork:
         prediction = self.loaded_model.predict(batch)
         graph_location = self.top_3_predictions_unlabeled(prediction)
         prediction_label = self.get_prediction_label(prediction)
-        pie_chart_location = self.create_pie_chart(prediction)
-        return prediction_label, graph_location, pie_chart_location
+        stem_chart_location = self.create_stem_chart(prediction)
+        return prediction_label, graph_location, stem_chart_location
 
     def get_prediction_label(self, prediction_array):
         """
@@ -56,7 +56,7 @@ class NeuralNetwork:
         plt.savefig(url)
         return url
 
-    def create_pie_chart(self, prediction_array, n=0):
+    def create_stem_chart(self, prediction_array, n=0):
         prediction_array = prediction_array * 100
         fig, ax = plt.subplots()
         ax.stem(self.unique_genus.tolist(), prediction_array[0])
